@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('student', function (Blueprint $table) {
-            $table->integer('studentId')->primary();
+            $table->integer('student_id')->primary();
             $table->string('email', 45)->unique();
             $table->string('password', 45);
             $table->string('fname', 45);
@@ -22,6 +22,22 @@ return new class extends Migration
             $table->string('mobile', 15);
             $table->integer('parentId')->foreignId();
             $table->date('date_of_join');
+            $table->boolean('status');
+            $table->date('last_login_date');
+            $table->string('last_login_ip', 45);
+
+            $table->timestamps();
+        });
+
+        Schema::create('parent', function (Blueprint $table) {
+            $table->integer('parent_id')->primary();
+            $table->string('email', 45)->unique();
+            $table->string('password', 45);
+            $table->string('fname', 45);
+            $table->string('lname', 45);
+            $table->date('dob');
+            $table->string('phone', 15);
+            $table->string('mobile', 15);
             $table->boolean('status');
             $table->date('last_login_date');
             $table->string('last_login_ip', 45);
